@@ -1,0 +1,12 @@
+title Kun on kirjattu uusi nootti ja painettu Lähetä
+
+selain->palvelin: HTTP POST /new_note
+note right of selain: POST body: "name" kenttä
+palvelin->tietokanta: Tallentaa uuden nootin
+note over tietokanta: en katsonut mitä tallennus oikeasti tekee
+palvelin->selain: HTTP 200
+selain->palvelin: HTTP GET /data.json
+note right of selain: main.js tekee XMLHTTPRequestin
+palvelin->tietokanta: FETCH notes
+palvelin->selain: HTTP 200 body: nootit jsonina
+selain->selain: DOM renskataan uudelleen "notes" -id elementtiin
